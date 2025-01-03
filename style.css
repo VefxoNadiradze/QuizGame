@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&family=SUSE:wght@100..800&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -5,5 +6,90 @@
 }
 
 body {
+  min-height: 100vh;
   background-color: #0b69ee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Rubik", serif;
+}
+
+.QuizCard {
+  background-color: #fff;
+  padding: 13px 17px;
+  width: 39%;
+  border-radius: 14px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #c1c1d4;
+  padding-bottom: 10px;
+  font-size: 17px;
+}
+
+.countDown {
+  background-color: #e1f5ff;
+  padding: 13px 28px;
+  border-radius: 25px;
+}
+
+.countDown i {
+  color: #0b69ee;
+}
+
+.countDown .countDownSpan {
+  margin-left: 12px;
+}
+
+main {
+  margin-top: 10px;
+}
+
+.question {
+  font-size: 21px;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  gap: 12px;
+}
+
+.answers .answer {
+  text-align: left;
+  font-size: 17px;
+  padding: 15px 12px;
+  border-radius: 5px;
+  border: 2px solid #d5d4e2;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.answers .answer:hover {
+  background-color: #d5d4e2;
+  color: white;
+}
+
+.nextBtn {
+  display: block;
+  margin-top: 10px;
+  margin-left: auto;
+  padding: 10px 15px;
+  font-size: 15px;
+  background-color: #0b69ee;
+  border-radius: 5px;
+  border: 2px solid #0b69ee;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.nextBtn:hover {
+  background-color: #fff;
+  color: #0b69ee;
 }
