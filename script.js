@@ -37,6 +37,8 @@ const getData = async () => {
 
         answers.map((item, index) => {
           answerBtns[index].innerText = data[currentIndex][item];
+          answerBtns[index].classList.remove("correctAnswer");
+          answerBtns[index].classList.remove("IncorrectAnswer");
         });
       }
     });
