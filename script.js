@@ -12,17 +12,26 @@ const getData = async () => {
     let data = await res.json();
     currentIndexSpan.innerText = currentIndex + 1;
     QuizLengthSpan.innerText = data.length;
-
+    question.innerText = data[currentIndex].question;
     answers.map((item) => {
       const answer = document.createElement("button");
       answer.classList.add("answer");
       answersParent.appendChild(answer);
       answer.innerText = data[currentIndex][item];
+
+      answer.addEventListener("click", () => {
+        if (item === data[currentIndex].answer) {
+          answer.classList.add("correctAnswer");
+        } else {
+          answer.classList.add("IncorrectAnswer");
+        }
+      });
     });
 
     nextBtn.addEventListener("click", () => {
       if (currentIndex + 1 < data.length) {
         currentIndexSpan.innerText = ++currentIndex + 1;
+        question.innerText = data[currentIndex].question;
 
         let answerBtns = Array.from(document.querySelectorAll(".answer"));
 

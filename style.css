@@ -93,3 +93,11 @@ main {
   background-color: #fff;
   color: #0b69ee;
 }
+
+.correctAnswer {
+  background-color: #e8f7d5 !important;
+}
+
+.IncorrectAnswer {
+  background-color: #ffdde1 !important;
+}
