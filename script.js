@@ -6,6 +6,13 @@ const nextBtn = document.querySelector(".nextBtn");
 let currentIndex = 0;
 const answers = ["A", "B", "C", "D"];
 
+const disableAnswerButtons = () => {
+  let answerBtns = Array.from(document.querySelectorAll(".answer"));
+  answerBtns.map((item) => {
+    item.disabled = true;
+  });
+};
+
 const getData = async () => {
   try {
     let res = await fetch("data.json");
@@ -20,6 +27,7 @@ const getData = async () => {
       answer.innerText = data[currentIndex][item];
 
       answer.addEventListener("click", () => {
+        disableAnswerButtons();
         if (item === data[currentIndex].answer) {
           answer.classList.add("correctAnswer");
         } else {
@@ -39,6 +47,7 @@ const getData = async () => {
           answerBtns[index].innerText = data[currentIndex][item];
           answerBtns[index].classList.remove("correctAnswer");
           answerBtns[index].classList.remove("IncorrectAnswer");
+          answerBtns[index].disabled = false;
         });
       }
     });
