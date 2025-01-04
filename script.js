@@ -27,11 +27,8 @@ const getData = async () => {
     const CountDownFoo = () => {
       clearInterval(interval);
       count = 10;
-      countDownSpan.innerText = count;
 
       interval = setInterval(() => {
-        console.log(count);
-
         if (count > 0) {
           countDownSpan.innerText = count;
           count--;
