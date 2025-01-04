@@ -22,6 +22,7 @@ const getData = async () => {
     currentIndexSpan.innerText = currentIndex + 1;
     QuizLengthSpan.innerText = data.length;
     question.innerText = data[currentIndex].question;
+    countDownSpan.innerText = count;
 
     const CountDownFoo = () => {
       clearInterval(interval);
