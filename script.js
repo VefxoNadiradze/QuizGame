@@ -39,19 +39,56 @@ const getData = async () => {
           countDownSpan.innerText = count;
           clearInterval(interval);
           currentIndexSpan.innerText = ++currentIndex + 1;
-          question.innerText = data[currentIndex].question;
+          question.innerText = data[currentIndex]?.question;
           let answerBtns = Array.from(document.querySelectorAll(".answer"));
           answers.map((item, index) => {
-            answerBtns[index].innerText = data[currentIndex][item];
+            answerBtns[index].innerText =
+              data[currentIndex] && data[currentIndex][item];
             answerBtns[index].classList.remove("correctAnswer");
             answerBtns[index].classList.remove("IncorrectAnswer");
             answerBtns[index].disabled = false;
-            if (currentIndex + 1 < data.length) {
+            if (currentIndex + 1 <= data.length) {
               CountDownFoo();
+              return;
+            } else {
+              currentIndexSpan.innerText = currentIndex;
+
+              main.innerHTML = "";
+              const totalScore = document.createElement("h3");
+              main.appendChild(totalScore);
+              totalScore.innerText = `Total score:  ${score}`;
+
+              const restartBtn = document.createElement("button");
+              restartBtn.innerText = "Try again";
+              restartBtn.classList.add("restartBtn");
+              main.appendChild(restartBtn);
+              let answerBtns = Array.from(document.querySelectorAll(".answer"));
+
+              restartBtn.addEventListener("click", () => {
+                CountDownFoo();
+                score = 0;
+                currentIndex = 0;
+                currentIndexSpan.innerText = currentIndex + 1;
+                totalScore.remove();
+                restartBtn.remove();
+                question.innerText = data[currentIndex].question;
+                main.appendChild(question);
+                main.appendChild(answersParent);
+
+                answerBtns = Array.from(document.querySelectorAll(".answer"));
+                answers.map((item, index) => {
+                  answerBtns[index].innerText = data[currentIndex][item];
+                  answerBtns[index].classList.remove("correctAnswer");
+                  answerBtns[index].classList.remove("IncorrectAnswer");
+                  answerBtns[index].disabled = false;
+                });
+
+                main.appendChild(nextBtn);
+              });
             }
           });
         }
-      }, 1000);
+      }, 300);
     };
 
     CountDownFoo();
@@ -74,6 +111,7 @@ const getData = async () => {
         }
 
         clicked = true;
+
         if (currentIndex + 1 == data.length && clicked == true) {
           main.innerHTML = "";
           const totalScore = document.createElement("h3");
@@ -88,9 +126,9 @@ const getData = async () => {
 
           restartBtn.addEventListener("click", () => {
             CountDownFoo();
-
+            score = 0;
             currentIndex = 0;
-            currentIndexSpan.innerText = currentIndex;
+            currentIndexSpan.innerText = currentIndex + 1;
             totalScore.remove();
             restartBtn.remove();
             question.innerText = data[currentIndex].question;
