@@ -119,3 +119,42 @@ main {
   background-color: #fff;
   color: #0b69ee;
 }
+
+@media screen and (max-width: 885px) {
+  .QuizCard {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 685px) {
+  .QuizCard {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .QuizCard {
+    width: 85%;
+  }
+  .question {
+    font-size: 15px;
+  }
+
+  .answers .answer {
+    font-size: 15px;
+    padding: 13px 10px;
+  }
+  .countDown {
+    padding: 11px 23px;
+    font-size: 15px;
+  }
+  .QuizIndexP {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .QuizCard {
+    width: 95%;
+  }
+}
