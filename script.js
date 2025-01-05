@@ -64,13 +64,6 @@ const getData = async () => {
 
       answer.addEventListener("click", () => {
         disableAnswerButtons();
-        clicked = true;
-        if (currentIndex + 1 == data.length && clicked == true) {
-          main.innerHTML = "";
-          const totalScore = document.createElement("h3");
-          main.appendChild(totalScore);
-          totalScore.innerText = `Total score:  ${score}`;
-        }
 
         clearInterval(interval);
         if (item === data[currentIndex].answer) {
@@ -78,6 +71,42 @@ const getData = async () => {
           score += 1;
         } else {
           answer.classList.add("IncorrectAnswer");
+        }
+
+        clicked = true;
+        if (currentIndex + 1 == data.length && clicked == true) {
+          main.innerHTML = "";
+          const totalScore = document.createElement("h3");
+          main.appendChild(totalScore);
+          totalScore.innerText = `Total score:  ${score}`;
+
+          const restartBtn = document.createElement("button");
+          restartBtn.innerText = "Try again";
+          restartBtn.classList.add("restartBtn");
+          main.appendChild(restartBtn);
+          let answerBtns = Array.from(document.querySelectorAll(".answer"));
+
+          restartBtn.addEventListener("click", () => {
+            CountDownFoo();
+
+            currentIndex = 0;
+            currentIndexSpan.innerText = currentIndex;
+            totalScore.remove();
+            restartBtn.remove();
+            question.innerText = data[currentIndex].question;
+            main.appendChild(question);
+            main.appendChild(answersParent);
+
+            answerBtns = Array.from(document.querySelectorAll(".answer"));
+            answers.map((item, index) => {
+              answerBtns[index].innerText = data[currentIndex][item];
+              answerBtns[index].classList.remove("correctAnswer");
+              answerBtns[index].classList.remove("IncorrectAnswer");
+              answerBtns[index].disabled = false;
+            });
+
+            main.appendChild(nextBtn);
+          });
         }
       });
     });
@@ -90,7 +119,7 @@ const getData = async () => {
         question.innerText = data[currentIndex].question;
 
         let answerBtns = Array.from(document.querySelectorAll(".answer"));
-        console.log(score);
+
         answers.map((item, index) => {
           answerBtns[index].innerText = data[currentIndex][item];
           answerBtns[index].classList.remove("correctAnswer");

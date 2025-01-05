@@ -101,3 +101,21 @@ main {
 .IncorrectAnswer {
   background-color: #ffdde1 !important;
 }
+
+.restartBtn {
+  display: block;
+  margin-top: 10px;
+  margin-left: auto;
+  padding: 10px 15px;
+  font-size: 15px;
+  background-color: #0b69ee;
+  border-radius: 5px;
+  border: 2px solid #0b69ee;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.restartBtn:hover {
+  background-color: #fff;
+  color: #0b69ee;
+}
