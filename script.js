@@ -4,10 +4,13 @@ const question = document.querySelector(".question");
 const answersParent = document.querySelector(".answers");
 const nextBtn = document.querySelector(".nextBtn");
 const countDownSpan = document.querySelector(".countDownSpan");
+const main = document.querySelector("main");
 let currentIndex = 0;
 const answers = ["A", "B", "C", "D"];
 let count = 10;
 let interval;
+let clicked = false;
+let score = 0;
 const disableAnswerButtons = () => {
   let answerBtns = Array.from(document.querySelectorAll(".answer"));
   answerBtns.map((item) => {
@@ -61,8 +64,18 @@ const getData = async () => {
 
       answer.addEventListener("click", () => {
         disableAnswerButtons();
+        clicked = true;
+        if (currentIndex + 1 == data.length && clicked == true) {
+          main.innerHTML = "";
+          const totalScore = document.createElement("h3");
+          main.appendChild(totalScore);
+          totalScore.innerText = `Total score:  ${score}`;
+        }
+
+        clearInterval(interval);
         if (item === data[currentIndex].answer) {
           answer.classList.add("correctAnswer");
+          score += 1;
         } else {
           answer.classList.add("IncorrectAnswer");
         }
@@ -71,11 +84,13 @@ const getData = async () => {
 
     nextBtn.addEventListener("click", () => {
       if (currentIndex + 1 < data.length) {
+        CountDownFoo();
+        clicked = false;
         currentIndexSpan.innerText = ++currentIndex + 1;
         question.innerText = data[currentIndex].question;
-        CountDownFoo();
-        let answerBtns = Array.from(document.querySelectorAll(".answer"));
 
+        let answerBtns = Array.from(document.querySelectorAll(".answer"));
+        console.log(score);
         answers.map((item, index) => {
           answerBtns[index].innerText = data[currentIndex][item];
           answerBtns[index].classList.remove("correctAnswer");
