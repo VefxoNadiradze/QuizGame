@@ -88,7 +88,7 @@ const getData = async () => {
             }
           });
         }
-      }, 300);
+      }, 1000);
     };
 
     CountDownFoo();
